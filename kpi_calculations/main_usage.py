@@ -15,15 +15,7 @@ class MainUsage(KPIBase):
         self.result = self.helper_transform_data(self.data["neo4j_data"][0]["result"])
 
     def helper_transform_data(self, data):
-        mongo_data = {
+        return {
             "calculation_date": datetime.now().date().isoformat(),
-            "kpis": []
+            "kpis": data
         }
-
-        for key, value in data.items():
-            kpi_document = {
-                "_id": key,
-                "v": value
-            }
-            mongo_data["kpis"].append(kpi_document)
-        return mongo_data
