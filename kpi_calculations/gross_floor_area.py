@@ -17,17 +17,12 @@ class GrossFloorArea(KPIBase):
     def helper_transform_data(self, data):
         mongo_data = {
             "calculation_date": datetime.now().date().isoformat(),
-            "kpis": []
+            "kpis": {}
         }
 
         for key, value in data.items():
             start = key.find('Measurement-') + len('Measurement-')
             end = key.find('-GrossFloorArea')
             custom_id = key[start:end]
-
-            kpi_document = {
-                "_id": custom_id,
-                "v": int(value)
-            }
-            mongo_data["kpis"].append(kpi_document)
+            mongo_data["kpis"][custom_id] = int(value)
         return mongo_data
