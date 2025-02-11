@@ -11,7 +11,14 @@ def store_data_in_mongodb(collection_name, data):
     collection = db[collection_name]
     collection.insert_one(data)
     # update calculation date
-    db[f"""{collection_name}_data"""].update_one({},
-                                                 {"$push": {"calculation_dates": datetime.now().date().isoformat()}},
-                                                 upsert=True)
+    if f"""{collection_name}_data""" not in db.list_collection_names():
+        db[f"""{collection_name}_data"""].update_one({},
+                                                     {"$push": {"calculation_dates": datetime.now().date().isoformat(),
+                                                                "description": "",
+                                                                "unit": ""}},
+                                                     upsert=True)
+    else:
+        db[f"""{collection_name}_data"""].update_one({},
+                                                     {"$push": {"calculation_dates": datetime.now().date().isoformat()}},
+                                                     upsert=True)
     client.close()
