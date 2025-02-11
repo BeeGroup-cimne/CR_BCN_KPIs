@@ -20,6 +20,9 @@ class KPIBase:
         """Method to store the result in MongoDB."""
         store_data_in_mongodb(self.mongo_collection_name,  self.result)
 
+    def get_mongo_collection_name(self):
+        return self.mongo_collection_name
+
     def run(self):
         """Execute the complete flow for the KPI: extraction, calculation and storage."""
         self.extract_data()
