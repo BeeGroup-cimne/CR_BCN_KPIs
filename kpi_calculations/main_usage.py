@@ -8,14 +8,26 @@ class MainUsage(KPIBase):
         super().__init__(mongo_collection_name=kpi_name)
 
     def extract_data(self):
-        query = f"""MATCH (b:s4bldg__Building) RETURN apoc.map.fromPairs(collect([b.bigg__cadastralId, b.bigg__mainUse])) AS result"""
+        query = f"""MATCH (b:s4bldg__Building) RETURN apoc.map.fromPairs(collect([split(b.uri, "-")[1], b.bigg__mainUse])) AS result"""
         self.data["neo4j_data"] = fetch_data_from_neo4j(query)
 
     def calculate(self):
         self.result = self.helper_transform_data(self.data["neo4j_data"][0]["result"])
 
+    def create_one_hot_vector(self, key):
+        main_usage_dict = {'Residential': 0, 'Agriculture': 1, 'Industrial': 2, 'Retail': 3, 'PublicServices': 4, None: 5}
+        one_hot_vector = [0] * len(main_usage_dict)
+        index = main_usage_dict.get(key, main_usage_dict[None])
+        one_hot_vector[index] = 100
+        return one_hot_vector
     def helper_transform_data(self, data):
-        return {
+
+        mongo_data = {
             "calculation_date": datetime.now().date().isoformat(),
-            "kpis": data
+            "kpis": {}
         }
+
+        for key, value in data.items():
+            mongo_data["kpis"][key] = self.create_one_hot_vector(value)
+
+        return mongo_data
