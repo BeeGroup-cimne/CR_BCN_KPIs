@@ -8,7 +8,7 @@ class ConstructionYear(KPIBase):
         super().__init__(mongo_collection_name=kpi_name)
 
     def extract_data(self):
-        query = f"""MATCH (b:s4bldg__Building) RETURN apoc.map.fromPairs(collect([b.bigg__cadastralId, substring(b.bigg__endConstruction, 0, 4)])) AS result"""
+        query = f"""MATCH (b:s4bldg__Building) RETURN apoc.map.fromPairs(collect([split(b.uri, "-")[1], substring(b.bigg__endConstruction, 0, 4)])) AS result"""
         self.data["neo4j_data"] = fetch_data_from_neo4j(query)
 
     def calculate(self):
