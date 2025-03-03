@@ -22,6 +22,3 @@ class HeatWaves(MeteoBase):
 
         weather_df = weather_df.merge(conversion_gdf, on = 'weatherId',how='inner')
         self.result = self.helper_transform_data(weather_df)
-
-# gross_floor_area = HeatWaves(kpi_name="heat_wave")
-# gross_floor_area.run()

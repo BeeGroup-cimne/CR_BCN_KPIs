@@ -9,7 +9,3 @@ class TorridNights(MeteoBase):
     def calculate(self):
         temp_condition = lambda temp: (temp > config['weather_downscaling']['temperature']['torrid_night']['min']) & (temp <= config['weather_downscaling']['temperature']['torrid_night']['max'])
         self._process_night(temp_conditions=temp_condition)
-
-
-gross_floor_area = TorridNights(kpi_name="torrid_night")
-gross_floor_area.run()
