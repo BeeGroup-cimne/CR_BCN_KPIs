@@ -9,7 +9,3 @@ class HellishNights(MeteoBase):
     def calculate(self):
         temp_condition = lambda temp: (temp > config['weather_downscaling']['temperature']['hellish_night']) 
         self._process_night(temp_conditions=temp_condition)
-
-
-# gross_floor_area = HellishNights(kpi_name="hellish_night")
-# gross_floor_area.run()

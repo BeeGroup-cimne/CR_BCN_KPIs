@@ -8,7 +8,4 @@ class TropicalNights(MeteoBase):
 
     def calculate(self):
         temp_conditions = lambda temp: (temp > config['weather_downscaling']['temperature']['tropical_night']['min']) & (temp <= config['weather_downscaling']['temperature']['tropical_night']['max'])
-        self._process_night(temp_conditions=temp_conditions)    
-
-# gross_floor_area = TropicalNights(kpi_name="tropical_night")
-# gross_floor_area.run()
+        self._process_night(temp_conditions=temp_conditions)

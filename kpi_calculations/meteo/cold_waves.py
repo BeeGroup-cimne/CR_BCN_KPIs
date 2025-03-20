@@ -23,6 +23,3 @@ class ColdWaves(MeteoBase):
         weather_df = pd.concat(dfs, ignore_index=True)
         weather_df = weather_df.merge(conversion_gdf, on='weatherId', how='inner')
         self.result = self.helper_transform_data(weather_df)
-
-# cold_waves = ColdWaves(kpi_name="cold_waves")
-# cold_waves.run()

@@ -29,6 +29,7 @@ class MeteoBase(KPIBase):
             row_stop=f"""{(end // 10000000) % 4}~{value}~{end}""",
             table_name=config['weather_downscaling']['table_name']
         )
+        # print(f"""{(start // 10000000) % 4}~{value}~{start}""")
         # Decodificación y limpieza de datos
         decoded_data = [(int(hbase_data[x][0].decode('utf-8').split('~')[-1]),
                          float(hbase_data[x][1][b'v:airTemperature'].decode('utf-8'))) for x in range(len(hbase_data))]
@@ -57,13 +58,17 @@ class MeteoBase(KPIBase):
         """
         Extracts data from Neo4j and HBase, it can be specified the range of the time series to extract.
         """
+        print("start")
         start = pd.to_datetime(config['weather_downscaling']['start']).value // 10 ** 9
         end = pd.to_datetime(config['weather_downscaling']['end']).value // 10 ** 9
-
-        query = f"""MATCH (n:s4agri__WeatherStation)-[:s4syst__hasSubSystem]->(d:saref__Device)-[:saref__makesMeasurement]->(m:saref__Measurement) RETURN apoc.map.fromPairs(collect([split(n.uri, "Station-")[1], split(m.uri, "-")[1]])) AS result"""
+        query = f"""MATCH (n:s4agri__WeatherStation)-[:s4syst__hasSubSystem]->(d:saref__Device)-[:saref__makesMeasurement]->(m:saref__Measurement) RETURN apoc.map.fromPairs(collect([split(n.uri, "Era5Land-")[1], split(m.uri, "-")[1]])) AS result"""
+        # query = f"""MATCH (n:s4agri__WeatherStation)-[:s4syst__hasSubSystem]->(d:saref__Device)-[:saref__makesMeasurement]->(m:saref__Measurement) RETURN apoc.map.fromPairs(collect([split(n.uri, "Station-")[1], split(m.uri, "-")[1]])) AS result"""
         self.data["neo4j_data"] = fetch_data_from_neo4j(query)
+        # self.data["neo4j_data"] = [{'result': {'41.40357-2.1110215': '000604514f95766521b527652763e306ca9bf40b9b4730e703d12d270acad22d'}}]
+        print("neo4j_data")
         self.data["result"] = {}
         self.data["result"] = self.parallel_process(start, end)
+        print("downloaded")
 
     def coords2buildings(self, unique_coords, coord_reference_system):
         """

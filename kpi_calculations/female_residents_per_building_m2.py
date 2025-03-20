@@ -10,7 +10,7 @@ from social_ES.utils_INE import INEPopulationAnualCensus
 from config.config_loader import config
 
 
-class FemaleResidentsPerBuilding(KPIBase):
+class FemaleResidentsPerBuildingM2(KPIBase):
     def __init__(self, kpi_name):
         super().__init__(mongo_collection_name=kpi_name)
 
@@ -60,18 +60,16 @@ class FemaleResidentsPerBuilding(KPIBase):
                 continue
 
             for building in buildings_list:
-                building_residential_area = 0
-                building_data = self.data['area'].get(building, {})
-                if isinstance(building_data, dict):
-                    building_residential_area = building_data.get('Residential', 0)
-                building_spaces_data = self.data['building_spaces'].get(building, 0)
-                if building_spaces_data == 0:
-                    continue
+                # building_residential_area = 0
+                # building_data = self.data['area'].get(building, {})
+                # if isinstance(building_data, dict):
+                #     building_residential_area = building_data.get('Residential', 0)
+                # building_spaces_data = self.data['building_spaces'].get(building, 0)
+                # if building_spaces_data == 0:
+                #     continue
 
                 for year, social_value in self.data["social"].items():
-                    self.data['result'][year][building] = (
-                                (building_residential_area / census_tract_residential_area) * social_value.get(
-                            census_tract, np.nan)) / building_spaces_data
+                    self.data['result'][year][building] = social_value.get(census_tract, np.nan) / census_tract_residential_area
 
         self.result = self.helper_transform_data(self.data["result"])
 
@@ -80,7 +78,7 @@ class FemaleResidentsPerBuilding(KPIBase):
             {
                 "calculation_date": datetime(year=int(year), month=1, day=1).date().isoformat(),
                 "kpis": {
-                    key: round(value, 2)
+                    key: value
                     for key, value in values.items()
                 }
             }

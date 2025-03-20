@@ -13,13 +13,18 @@ def store_data_in_mongodb(collection_name, data):
     # update calculation date
     if f"""{collection_name}_data""" not in db.list_collection_names():
         db[f"""{collection_name}_data"""].update_one({},
-                                                     {"$push": {"calculation_dates": datetime.now().date().isoformat(),
+                                                     {"$push": {"calculation_dates": data["calculation_date"],
                                                                 "description": "",
-                                                                "unit": ""}},
+                                                                "unit": "",
+                                                                "labels_names": "",
+                                                                "labels_title": "",
+                                                                "labels_type": "",
+                                                                "legend": "",
+                                                                "name": ""}},
                                                      upsert=True)
     else:
         db[f"""{collection_name}_data"""].update_one({},
-                                                     {"$push": {"calculation_dates": datetime.now().date().isoformat()}},
+                                                     {"$set": {"calculation_dates": data["calculation_date"]}},
                                                      upsert=True)
     client.close()
 
@@ -32,13 +37,18 @@ def store_many_data_in_mongodb(collection_name, data):
 
     if f"""{collection_name}_data""" not in db.list_collection_names():
         db[f"""{collection_name}_data"""].update_one({},
-                                                     {"$push": {"calculation_dates": datetime.now().date().isoformat(),
+                                                     {"$push": {"calculation_dates": [item["calculation_date"] for item in data],
                                                                 "description": "",
-                                                                "unit": ""}},
+                                                                "unit": "",
+                                                                "labels_names": "",
+                                                                "labels_title": "",
+                                                                "labels_type": "",
+                                                                "legend": "",
+                                                                "name": ""}},
                                                      upsert=True)
     else:
         db[f"""{collection_name}_data"""].update_one({},
-                                                     {"$push": {"calculation_dates": datetime.now().date().isoformat()}},
+                                                     {"$set": {"calculation_dates": [item["calculation_date"] for item in data]}},
                                                      upsert=True)
     client.close()
 
