@@ -28,7 +28,7 @@ class FemaleResidentsPerBuilding(KPIBase):
         }
 
         # Residential area
-        file_path = f"{config['paths']['nextcloud']}/data/hypercadaster_ES/results/08900_br_results.pkl"
+        file_path = f"{config['paths']['nextcloud']}/data/hypercadaster_ES/08900.pkl"
         hyper_df = pd.read_pickle(file_path, compression="gzip")
         main_usage_list = ["Residential"]
         self.data["area"] = dict(zip(hyper_df['building_reference'], hyper_df['br__area_without_communals']))
