@@ -1,3 +1,4 @@
+import math
 from datetime import datetime
 
 import numpy as np
@@ -13,13 +14,21 @@ class NumberOfFloorsAboveGround(KPIBase):
         super().__init__(mongo_collection_name=kpi_name)
 
     def extract_data(self):
-        file_path = "/Users/jose/Nextcloud/Beegroup/data/hypercadaster_ES/results/08900_br_results.pkl"
+        file_path = "/Users/jose/Nextcloud/Beegroup/data/hypercadaster_ES/08900.pkl"
         df = pd.read_pickle(file_path, compression="gzip")
         self.data["neo4j_data"] = dict(zip(df['building_reference'], df['br__floors_above_ground']))
 
     def calculate(self):
-        self.result = self.helper_transform_data(self.data["neo4j_data"])
+        self.result = self.helper_transform_data(self.sanitize_dict(self.data["neo4j_data"]))
 
+    def sanitize_dict(self, data):
+        for key, value in data.items():
+            if isinstance(value, float):
+                if math.isnan(value) or math.isinf(value):
+                    data[key] = None
+                else:
+                    data[key] = round(value, 3)
+        return data
     def helper_transform_data(self, data):
         mongo_data = {
             "calculation_date": datetime.now().date().isoformat(),
@@ -28,7 +37,8 @@ class NumberOfFloorsAboveGround(KPIBase):
 
         for key, value in data.items():
             try:
-                mongo_data["kpis"][key] = int(value)
+                mongo_data["kpis"][key] = value
             except ValueError:
-                mongo_data["kpis"][key] = np.nan
+                print("error")
+                mongo_data["kpis"][key] = None
         return mongo_data
