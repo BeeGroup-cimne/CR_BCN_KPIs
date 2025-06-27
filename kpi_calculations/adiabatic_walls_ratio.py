@@ -1,29 +1,34 @@
+import math
 from datetime import datetime
+
+import numpy as np
+
 from connectors.hbase_connector import fetch_data_from_hbase
 from connectors.mongodb_connector import store_data_in_mongodb
 from connectors.neo4j_connector import fetch_data_from_neo4j
 from kpi_calculations.kpi_base import KPIBase
 import pandas as pd
-import math
 
-
-class EffectiveConstructionYear(KPIBase):
+class AdiabaticWallsRatio(KPIBase):
     def __init__(self, kpi_name):
         super().__init__(mongo_collection_name=kpi_name)
 
     def extract_data(self):
         file_path = "/Users/jose/Nextcloud/Beegroup/data/hypercadaster_ES/08900.pkl"
-        df = pd.read_pickle(file_path, compression="gzip")
-        self.data["neo4j_data"] = dict(zip(df['building_reference'], df['br__mean_building_space_effective_year']))
+        hyper_df = pd.read_pickle(file_path, compression="gzip")
+        self.data["adiabatic"] = dict(zip(hyper_df['building_reference'], hyper_df['br__adiabatic_wall']))
+        self.data["air_contact"] = dict(zip(hyper_df['building_reference'], hyper_df['br__air_contact_wall']))
+
         # query = f"""MATCH (n:s4bldg__Building)-[:geosp__hasArea]->(m:saref__Measurement)-[:saref__relatesToProperty]->(bigg__GrossFloorArea{{uri:"http://bigg-project.eu/ontology#GrossFloorArea"}}) RETURN apoc.map.fromPairs(collect([m.uri, m.saref__hasValue])) AS result"""
         # self.data["neo4j_data"] = fetch_data_from_neo4j(query)
 
     def calculate(self):
         self.data["result"] = {}
-        for ref, uses in self.data["neo4j_data"].items():
-            if type(uses) is dict:
-                if "Residential" in uses.keys():
-                    self.data["result"][ref] = uses["Residential"]
+        for ref, value in self.data["air_contact"].items():
+
+            if isinstance(value, dict) and (sum(list(value.values()))+self.data["adiabatic"][ref]) != 0:
+                self.data["result"][ref] = (self.data["adiabatic"][ref]/(sum(list(value.values()))+self.data["adiabatic"][ref]))*100
+
 
         self.result = self.helper_transform_data(self.sanitize_dict(self.data["result"]))
 
@@ -34,7 +39,7 @@ class EffectiveConstructionYear(KPIBase):
         }
 
         for key, value in data.items():
-            mongo_data["kpis"][key] = value
+            mongo_data["kpis"][key] = value if not math.isnan(value) else None
         return mongo_data
 
     def sanitize_dict(self, data):

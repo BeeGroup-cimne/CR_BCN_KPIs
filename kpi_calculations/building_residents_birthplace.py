@@ -18,7 +18,7 @@ class BuildingResidentsBirthplace(KPIBase):
 
         # Social
         social_df = INEPopulationAnualCensus(
-            path=f"{config['paths']['nextcloud']}/data/social_ES/data/INEPopulationAnualCensus",
+            wd=f"{config['paths']['nextcloud']}/data/social_ES/",
             municipality_code="08019")['Sections']
 
         self.data["social"] = {
@@ -53,7 +53,7 @@ class BuildingResidentsBirthplace(KPIBase):
         }
 
         # Residential area
-        file_path = f"{config['paths']['nextcloud']}/data/hypercadaster_ES/results/08900_br_results.pkl"
+        file_path = f"{config['paths']['nextcloud']}/data/hypercadaster_ES/08900.pkl"
         hyper_df = pd.read_pickle(file_path, compression="gzip")
         self.data["area"] = dict(zip(hyper_df['building_reference'], hyper_df['br__area_without_communals']))
         main_usage_list = ["Residential"]
@@ -95,13 +95,16 @@ class BuildingResidentsBirthplace(KPIBase):
                     continue
 
                 for year, social_values in self.data["social"].items():
+
                     census_tract_values = social_values.get(census_tract,
-                                                            [np.nan] * 19)  # Lista con NaN si no hay datos
-                    self.data['result'][year][building] = [
-                        ((building_residential_area / census_tract_residential_area) * value) / building_spaces_data if not np.isnan(
+                                                            [np.nan] * 19)
+                    values = [
+                        round(((
+                                     building_residential_area / census_tract_residential_area) * value) / building_spaces_data, 2) if not np.isnan(
                             value) else np.nan
                         for value in census_tract_values
                     ]
+                    self.data['result'][year][building] = [round((v / sum(values)) * 100, 2) if sum(values) > 0 else 0 for v in values]
         self.result = self.helper_transform_data(self.data["result"])
 
     def helper_transform_data(self, data):
@@ -110,7 +113,6 @@ class BuildingResidentsBirthplace(KPIBase):
                 "calculation_date": datetime(year=int(year), month=1, day=1).date().isoformat(),
                 "kpis": {
                     key: value
-                    # key: value
                     for key, value in values.items()
                 }
             }

@@ -12,7 +12,7 @@ class NumberOfFloorsBelowGround(KPIBase):
         super().__init__(mongo_collection_name=kpi_name)
 
     def extract_data(self):
-        file_path = "/Users/jose/Nextcloud/Beegroup/data/hypercadaster_ES/results/08900_br_results.pkl"
+        file_path = "/Users/jose/Nextcloud/Beegroup/data/hypercadaster_ES/08900.pkl"
         df = pd.read_pickle(file_path, compression="gzip")
         self.data["neo4j_data"] = dict(zip(df['building_reference'], df['br__floors_below_ground']))
 
