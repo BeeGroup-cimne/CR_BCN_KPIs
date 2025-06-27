@@ -1,60 +1,24 @@
-from kpi_calculations.ancients_residents_per_building import AncientsResidentsPerBuilding
-from kpi_calculations.ancients_residents_per_building_m2 import AncientsResidentsPerBuildingM2
-from kpi_calculations.ancients_residents_per_census_tract import AncientsResidentsPerCensusTract
-from kpi_calculations.annual_net_incomes_household_per_building import AnnualNetIncomesHouseholdPerBuilding
-from kpi_calculations.annual_net_incomes_household_per_census_tract import AnnualNetIncomesHouseholdPerCensusTract
-from kpi_calculations.average_weekly_electricity_load_curve import AverageWeeklyElectricityLoadCurve
-from kpi_calculations.building_code import BuildingCode
+from kpi_calculations.adiabatic_wall_area import AdiabaticWallArea
+from kpi_calculations.adiabatic_walls_ratio import AdiabaticWallsRatio
 from kpi_calculations.building_residents_birthplace import BuildingResidentsBirthplace
-from kpi_calculations.building_roof_area import BuildingRoofArea
-from kpi_calculations.children_residents_per_building import ChildrenResidentsPerBuilding
-from kpi_calculations.children_residents_per_building_m2 import ChildrenResidentsPerBuildingM2
-from kpi_calculations.children_residents_per_census_tract import ChildrenResidentsPerCensusTract
-from kpi_calculations.common_to_total_area_ratio import CommonToTotalAreaRatio
-from kpi_calculations.cooling_thermal_demand_intensity import CoolingThermalDemandIntensity
-from kpi_calculations.distance_from_facade_to_adjacent_buildings_by_orientation import \
-    DistanceFromFacadeToAdjacentBuildingsByOrientation
-from kpi_calculations.dwelings_number import DwelingsNumber
-from kpi_calculations.effective_construction_year import EffectiveConstructionYear
-from kpi_calculations.facade_area_exposed_by_orientation import FacadeAreaExposedByOrientation
-from kpi_calculations.female_residents_per_building import FemaleResidentsPerBuilding
-from kpi_calculations.female_residents_per_building_m2 import FemaleResidentsPerBuildingM2
-from kpi_calculations.female_residents_per_census_tract import FemaleResidentsPerCensusTract
-
-from kpi_calculations.foreign_residents_per_census_tract import ForeignResidentsPerCensusTract
-from kpi_calculations.grossFloorArea import grossFloorArea
-from kpi_calculations.grid_vegetation_index import GridVegetationIndex
-from kpi_calculations.ground_floor_commercial_premises import GroundFloorCommercialPremises
-from kpi_calculations.ground_floor_commercial_premises_list import GroundFloorCommercialPremisesList
-from kpi_calculations.heating_thermal_demand_intensity import HeatingThermalDemandIntensity
-from kpi_calculations.household_rental_price_per_building import HouseholdRentalPricePerBuilding
-from kpi_calculations.income_sources_typology import IncomeSourcesTypologyPerCensusTract
-from kpi_calculations.male_residents_per_building import MaleResidentsPerBuilding
-from kpi_calculations.male_residents_per_census_tract import MaleResidentsPerCensusTract
-from kpi_calculations.meteo.cold_waves import ColdWaves
-from kpi_calculations.meteo.heat_waves import HeatWaves
-from kpi_calculations.meteo.hellish_nights import HellishNights
-from kpi_calculations.meteo.torrid_nights import TorridNights
-from kpi_calculations.meteo.tropical_nights import TropicalNights
-from kpi_calculations.meteo_model_data.average_dwelling_area import AverageDwellingArea
-from kpi_calculations.nacionality_residents_per_building import NationalityResidentsPerBuilding
-from kpi_calculations.nacionality_residents_per_census_tract import NacionalityResidentsPerCensusTract
-from kpi_calculations.native_residents_per_building import NativeResidentsPerBuilding
-from kpi_calculations.native_residents_per_census_tract import NativeResidentsPerCensusTract
-from kpi_calculations.number_of_floors_above_ground import NumberOfFloorsAboveGround
-from kpi_calculations.number_of_floors_below_ground import NumberOfFloorsBelowGround
-from kpi_calculations.primary_energy_by_certificate import PrimaryEnergyByCertificate
-from kpi_calculations.residential_common_area_ratio import ResidentialCommonAreaRatio
-from kpi_calculations.residents_per_census_tract import ResidentsPerCensusTract
-from kpi_calculations.residents_per_building import ResidentsPerBuilding
-from kpi_calculations.total_energy_consumption_intensity import TotalEnergyConsumptionIntensity
-from kpi_calculations.total_residential_area import TotalResidentialArea
-from kpi_calculations.vegetation_index import VegetationIndex
-from kpi_calculations.gross_floor_area import GrossFloorArea
+from kpi_calculations.exterior_wall_area import ExteriorWallArea
+from kpi_calculations.exterior_wall_contact_facing_north_ratio import ExteriorWallContactFacingNorthRatio
+from kpi_calculations.exterior_wall_contact_ratio import ExteriorWallContactRatio
+from kpi_calculations.facade_area_ratio_by_orientation import FacadeAreaRatioByOrientation
+from kpi_calculations.gini_index_incomes import GiniIndexIncomes
+from kpi_calculations.income_distribution_p80_p20 import IncomeDistributionP80P20
 from kpi_calculations.main_usage import MainUsage
-from kpi_calculations.construction_year import ConstructionYear
-from kpi_calculations.annual_electricity_consumption import AnnualElectricityConsumption
-from kpi_calculations.window_to_wall_ratio import WindowToWallRatio
+from kpi_calculations.meteo.torrid_nights import TorridNights
+from kpi_calculations.min_time_to_closest_climate_shelter import MinTimeToClosestClimateShelter
+from kpi_calculations.num_climate_shelters import NumClimateShelters
+from kpi_calculations.num_climate_shelters_within_10min import NumClimateSheltersWithin10min
+from kpi_calculations.num_climate_shelters_within_15min import NumClimateSheltersWithin15min
+from kpi_calculations.num_climate_shelters_within_20min import NumClimateSheltersWithin20min
+from kpi_calculations.num_climate_shelters_within_30min import NumClimateSheltersWithin30min
+from kpi_calculations.percentage_population_over_65 import PercentagePopulationOver65
+from kpi_calculations.percentage_population_under_18 import PercentagePopulationUnder18
+from kpi_calculations.percentage_single_person_households import PercentageSinglePersonHouseholds
+from kpi_calculations.residential_common_area_ratio import ResidentialCommonAreaRatio
 
 
 def main():
@@ -107,6 +71,86 @@ def main():
 
 ###### Building ######
 
+    # walls_area_by_type
+    # walls_area_by_type = FacadeAreaRatioByOrientation(kpi_name="walls_area_by_type")
+    # walls_area_by_type.run()
+
+    # walls_ratio_by_type
+    # walls_ratio_by_type = FacadeAreaRatioByOrientation(kpi_name="walls_ratio_by_type")
+    # walls_ratio_by_type.run()
+
+    # num_climate_shelters
+    # num_climate_shelters = NumClimateShelters(kpi_name="num_climate_shelters")
+    # num_climate_shelters.run()
+
+    # num_climate_shelters_within_30min
+    # num_climate_shelters_within_30min = NumClimateSheltersWithin30min(kpi_name="num_climate_shelters_within_30min")
+    # num_climate_shelters_within_30min.run()
+
+    # num_climate_shelters_within_20min
+    # num_climate_shelters_within_20min = NumClimateSheltersWithin20min(kpi_name="num_climate_shelters_within_20min")
+    # num_climate_shelters_within_20min.run()
+
+    # num_climate_shelters_within_20min
+    # num_climate_shelters_within_15min = NumClimateSheltersWithin15min(kpi_name="num_climate_shelters_within_15min")
+    # num_climate_shelters_within_15min.run()
+
+    # num_climate_shelters_within_10min
+    # num_climate_shelters_within_10min = NumClimateSheltersWithin10min(kpi_name="num_climate_shelters_within_10min")
+    # num_climate_shelters_within_10min.run()
+
+    # min_time_to_closest_climate_shelter
+    # min_time_to_closest_climate_shelter = MinTimeToClosestClimateShelter(kpi_name="min_time_to_closest_climate_shelter")
+    # min_time_to_closest_climate_shelter.run()
+
+    # income_distribution_p80_p20
+    # income_distribution_p80_p20 = IncomeDistributionP80P20(kpi_name="income_distribution_p80_p20")
+    # income_distribution_p80_p20.run()
+
+    # gini_index_incomes
+    # gini_index_incomes = GiniIndexIncomes(kpi_name="gini_index_incomes")
+    # gini_index_incomes.run()
+
+    # percentage_single_person_households
+    # percentage_single_person_households = PercentageSinglePersonHouseholds(kpi_name="percentage_single_person_households")
+    # percentage_single_person_households.run()
+
+    # percentage_population_under_18
+    # percentage_population_under_18 = PercentagePopulationUnder18(kpi_name="percentage_population_under_18")
+    # percentage_population_under_18.run()
+
+    # percentage_population_over_65
+    # percentage_population_over_65 = PercentagePopulationOver65(kpi_name="percentage_population_over_65")
+    # percentage_population_over_65.run()
+
+    # adiabatic_wall_area
+    # adiabatic_wall_area = AdiabaticWallArea(kpi_name="adiabatic_wall_area")
+    # adiabatic_wall_area.run()
+
+    # exterior_wall_area
+    # exterior_wall_area = ExteriorWallArea(kpi_name="exterior_wall_area")
+    # exterior_wall_area.run()
+
+    # adiabatic_walls_ratio
+    # adiabatic_walls_ratio = AdiabaticWallsRatio(kpi_name="adiabatic_walls_ratio")
+    # adiabatic_walls_ratio.run()
+
+    # exterior_wall_contact_facing_north_ratio
+    # exterior_wall_contact_facing_north_ratio = ExteriorWallContactFacingNorthRatio(kpi_name="exterior_wall_contact_facing_north_ratio")
+    # exterior_wall_contact_facing_north_ratio.run()
+
+    # exterior_wall_contact_facing_south_ratio
+    # exterior_wall_contact_facing_south_ratio = ExteriorWallContactFacingSouthRatio(kpi_name="exterior_wall_contact_facing_south_ratio")
+    # exterior_wall_contact_facing_south_ratio.run()
+
+    # exterior_wall_contact_ratio
+    # exterior_wall_contact_ratio = ExteriorWallContactRatio(kpi_name="exterior_wall_contact_ratio")
+    # exterior_wall_contact_ratio.run()
+
+    #  elevation_above_sea_level
+    # elevation_above_sea_level = ElevationAboveSeaLevel(kpi_name="elevation_above_sea_level")
+    # elevation_above_sea_level.run()
+
     # children_residents_per_building_m2
     # children_residents_per_building_m2 = ChildrenResidentsPerBuildingM2(kpi_name="children_residents_per_building_m2")
     # children_residents_per_building_m2.run()
@@ -156,8 +200,8 @@ def main():
     # hellish_nights.run()
 
     # heat_waves
-    heat_waves = HeatWaves(kpi_name="heat_waves")
-    heat_waves.run()
+    # heat_waves = HeatWaves(kpi_name="heat_waves")
+    # heat_waves.run()
 
     # cold_waves
     # cold_waves = ColdWaves(kpi_name='cold_waves')
@@ -261,7 +305,7 @@ def main():
 
     ##annual_electricity_consumption_household
     # annual_electricity_consumption = AnnualElectricityConsumption(kpi_name='annual_electricity_consumption')
-    # annual_electricity_consumption.run()
+    # annualelectricity_consumption.run()
 
     ##construction_year
     # construction_year = ConstructionYear(kpi_name='construction_year')
