@@ -1,0 +1,86 @@
+{
+  "mongo_db": {
+    "uri": "mongodb://<user>:<pass>@<host>:27017/?authSource=<authdb>",
+    "db": "<db>"
+  },
+  "min_year": 2017,
+  "mongo_collection_features": [
+      ["annual_electricity_consumptionn", "electricity"],
+      ["annual_electricity_consumption", "electricity"],
+      ["annual_gas_consumption", "gas"],
+      ["income_distribution_p80_p20", "incomes_80_20"],
+      ["annual_net_incomes_household_per_building", "net_incomes"],
+      ["residential_common_area_ratio", "residential_share", 0],
+      ["residential_common_area_ratio", "offices_share", 3],
+      ["residential_common_area_ratio", "commercial_share", 7],
+      ["residential_common_area_ratio", "parking_share", 8],
+      ["gross_floor_area", "total_built_area"],
+      ["gini_index_incomes", "gini"],
+      ["residents_per_building", "residents"],
+      ["cooling_degree_days", "cdd"],
+      ["heating_degree_days", "hdd"],
+      ["effective_construction_year", "year_of_construction"],
+      ["number_of_floors_above_ground", "floors"],
+      ["dwelings_number", "n_dwellings"],
+      ["average_dwelling_area", "dwelling_area"]
+  ],
+  "predictors_to_run": {
+    "gas": [
+      [
+        "incomes_80_20",
+        "net_incomes",
+        "gini",
+        "residents",
+        "cdd",
+        "hdd",
+        "year_of_construction",
+        "floors",
+        "n_dwellings",
+        "dwelling_area",
+        "residential_share",
+        "offices_share",
+        "commercial_share",
+        "parking_share",
+        "total_built_area"
+      ],
+      "annual_gas_consumption",
+      10,
+      300,
+      [
+        "year",
+        [
+          2017
+        ]
+      ]
+    ],
+    "electricity": [
+      [
+        "gas",
+        "incomes_80_20",
+        "net_incomes",
+        "gini",
+        "residents",
+        "cdd",
+        "hdd",
+        "year_of_construction",
+        "floors",
+        "n_dwellings",
+        "dwelling_area",
+        "total_built_area",
+        "residential_share",
+        "offices_share",
+        "commercial_share",
+        "parking_share"
+      ],
+      "annual_electricity_consumption",
+      10,
+      150,
+      [
+        "year",
+        [
+          2017
+        ]
+      ]
+    ]
+  }
+}
