@@ -3,6 +3,7 @@ from datetime import datetime
 import numpy as np
 from social_ES.utils_INE import INEPopulationAnualCensus
 
+from config.config_loader import config
 from connectors.hbase_connector import fetch_data_from_hbase
 from connectors.mongodb_connector import store_data_in_mongodb, store_many_data_in_mongodb
 from connectors.neo4j_connector import fetch_data_from_neo4j
@@ -17,7 +18,7 @@ class ChildrenResidentsPerCensusTract(KPIBase):
     def extract_data(self):
         # Social
         df = INEPopulationAnualCensus(
-            path="/Users/jose/Nextcloud/Beegroup/data/social_ES/data/INEPopulationAnualCensus",
+            path=f"{config['paths']['nextcloud']}/data/social_ES/data/INEPopulationAnualCensus",
             municipality_code="08019")['Sections']
 
         self.data["social"] = {
