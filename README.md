@@ -18,6 +18,18 @@ These indicators are used to support data-driven decision-making and are display
 
 ---
 
+## Filling Missing KPI Values – KPI Predictor
+
+
+
+To complement the static KPI dataset provided in this repository, we offer an additional tool: the [**KPI Predictor**](https://github.com/BeeGroup-cimne/CR_BCN_KPIs/tree/main/kpi_predictor), a Python-based utility that fills in missing KPI values over time using supervised learning techniques.
+
+
+
+This tool is specifically designed to work with time series of KPIs stored in MongoDB and uses CatBoost, a gradient boosting model optimized for tabular data.
+
+
+---
 ## KPI Documentation
 
 
