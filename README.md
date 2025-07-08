@@ -27,7 +27,7 @@ Below you will find a detailed list of all KPIs, including their name, descripti
 #### Average dwelling area
 
 - **Description:** Average surface area of a dwelling, including both the private residential area and a proportional share of common spaces.
-- **Unit:** m^2
+- **Unit:** m²
 - **Data Source:** Spanish Cadastre.
 
 #### Building code at time of construction
@@ -39,7 +39,7 @@ Below you will find a detailed list of all KPIs, including their name, descripti
 #### Building roof area
 
 - **Description:** Represents the total surface area of a building's roof, measured in square meters.
-- **Unit:** m^2
+- **Unit:** m²
 - **Data Source:** Spanish cadaster.
 
 #### Number of dwellings per building
@@ -63,13 +63,13 @@ Below you will find a detailed list of all KPIs, including their name, descripti
 #### Total built area
 
 - **Description:** The total built area of the property is the sum of the cadastral constructed area of its private portion plus the corresponding share of the common elements’ area.The cadastral constructed area of the private portion is the one included within the outer line of the perimeter walls of each unit that makes up the property, and, where applicable, the centerlines of the party walls, excluding the area of light wells. Balconies, terraces, porches, and other similar elements that are covered count as 50% of their area, unless they are enclosed on three of their four sides, in which case they count as 100%.In residential use, spaces with a height lower than 1.50 meters are not considered constructed area.The area of common elements attributed to each property is published in the SEC for informational purposes and is an approximate distribution of the total area of the common elements of the property among its individual units, solely for cadastral valuation purposes.
-- **Unit:** m^2
+- **Unit:** m²
 - **Data Source:** Spanish Cadastre.
 
 #### Building usage
 
 - **Description:** Indicates the usage category of each building, classified into the following types: residential, agriculture, industrial, commercial, public services, and unused. The values represent the percentage of each usage type (in m²) relative to the building's total floor area.
-- **Unit:** m^2
+- **Unit:** m²
 - **Data Source:** Spanish Cadaster and Instituto Nacional de Estadistica (INE).
 
 #### Number of floors above ground
@@ -93,7 +93,7 @@ Below you will find a detailed list of all KPIs, including their name, descripti
 #### Wall types in building
 
 - **Description:** Total area of walls based on their type and orientation.The labels represent both the cardinal directions (North, South, East, West) as well as specific wall properties that influence thermal behavior:N (North): Represents walls facing the north. These walls typically receive less direct sunlight throughout the day.NE (Northeast): Walls facing the northeast will receive morning sunlight, but less exposure during the afternoon. S (South): Represents walls facing the south. These walls tend to receive the most direct sunlight, particularly in the Northern Hemisphere.SE (Southeast): These walls are exposed to sunlight during the early morning to midday, but with less direct sun in the afternoon.  W (West): Walls facing west will receive afternoon sunlight, often contributing to higher solar heat gain in the later hours of the day. SW (Southwest): These walls receive sunlight in the afternoon and can experience high solar heat gain towards the evening.NW (Northwest): Walls facing northwest receive indirect light throughout the day, with minimal direct sunlight. Air Contact: Refers to walls that are in direct contact with outdoor air, influencing heat loss or gain, especially in terms of temperature variations. Adiabatic: These walls do not exchange heat with the surrounding environment, and thus their thermal performance is unaffected by external air temperature changes.
-- **Unit:** m^2
+- **Unit:** m²
 - **Data Source:** Spanish Cadastre.
 
 #### Walls ratio by type
@@ -207,37 +207,37 @@ Below you will find a detailed list of all KPIs, including their name, descripti
 #### Annual electricity consumption
 
 - **Description:** Represents the total amount of electricity consumed over the course of one year within a specific building, expressed in kilowatt-hours per square meter (kWh/m²). This metric is used to track energy efficiency in relation to the building’s size. The calculation considers the total surface area of the building, including common areas and any commercial premises that may exist on the ground floor.
-- **Unit:** kWh/m^2
+- **Unit:** kWh/m²
 - **Data Source:** ENDESA and Metropolitan Area of Barcelona (AMB).
 
 #### Annual gas consumption
 
 - **Description:** Represents the total amount of gas consumed over the course of one year within a specific building, expressed in kilowatt-hours per square meter (kWh/m²). This metric is used to assess energy efficiency by comparing gas consumption to the building's size. The calculation considers the total surface area of the building, including common areas and any commercial premises that may exist on the ground floor.
-- **Unit:** kWh/m^2
+- **Unit:** kWh/m²
 - **Data Source:** NEDGIA, Metropolitan Area of Barcelona (AMB) and Spanish cadaster
 
 #### Cooling Thermal Demand Intensity
 
 - **Description:** It quantifies the amount of energy required for cooling a building in relation to its surface area. Higher values indicate a greater cooling demand, which may result from poor thermal insulation, high solar gains, or inefficient cooling systems. Lower values suggest better thermal performance due to passive design strategies, effective insulation, or natural ventilation.
-- **Unit:** kWh/m^2
+- **Unit:** kWh/m²
 - **Data Source:** Energy Performance Certificates.
 
 #### Heating Thermal Demand Intensity
 
 - **Description:** It quantifies the amount of energy required for heating a building in relation to its surface area. Higher values indicate a greater heating demand, which may result from poor thermal insulation, high heat losses, or inefficient heating systems. Lower values suggest better thermal performance due to passive design strategies, effective insulation, or optimized heat retention.
-- **Unit:** kWh/m^2
+- **Unit:** kWh/m²
 - **Data Source:** Energy Performance Certificates.
 
 #### Primary Energy from EPCs
 
 - **Description:** It quantifies the total primary energy demand of a building as stated in its official energy performance certificate. This value, includes both the direct energy consumption of the building and the energy losses associated with generation, transmission, and distribution. It serves as a standardized metric for assessing the energy efficiency of buildings.
-- **Unit:** kWh/m^2
+- **Unit:** kWh/m²
 - **Data Source:** Energy Performance Certificates.
 
 #### Total Energy Demand Intensity 
 
 - **Description:** It quantifies the total primary energy demand of a building as stated in its official energy performance certificate. This value, includes both the direct energy consumption of the building and the energy losses associated with generation, transmission, and distribution. It serves as a standardized metric for assessing the energy efficiency of buildings.
-- **Unit:** kWh/m^2
+- **Unit:** kWh/m²
 - **Data Source:** Energy Performance Certificates.
 
 #### Window-to-Wall Ratio
@@ -249,7 +249,7 @@ Below you will find a detailed list of all KPIs, including their name, descripti
 #### Yearly electricity consumption profile
 
 - **Description:** It provides a detailed view of the electricity usage over the course of a full year. It tracks how much electricity is consumed each month, showing the peaks and valleys in consumption, and identifying any patterns or seasonal changes.
-- **Unit:** kWh/m^2
+- **Unit:** kWh/m²
 - **Data Source:** ENDESA and Metropolitan Area of Barcelona (AMB).
 
 ### Infrastructure Indicators
@@ -320,13 +320,13 @@ Indicators are grouped into thematic categories, and each category contributes e
 
 ## License
 
-This project is licensed under the European Union Public License (EUPL), Version 1.2.
+This project is licensed under the **European Union Public License (EUPL), Version 1.2.**
 
 You may obtain a copy of the license at:
 
 https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
 
-Unless required by applicable law or agreed to in writing, software distributed under this license is distributed on an "AS IS" basis, without warranties or conditions of any kind.
+Unless required by applicable law or agreed to in writing, software distributed under this license is distributed **on an "AS IS" basis**, without warranties or conditions of any kind.
 
 © 2025 Jose Manuel Broto, Gerard Mor
 
