@@ -32,7 +32,7 @@ class ClimateShelters(KPIBase):
                     RETURN apoc.map.fromPairs(pairs) AS result"""
         self.data["neo4j_data"] = fetch_data_from_neo4j(query)[0]["result"]
 
-        file_path = "/Users/jose/Nextcloud/Beegroup/data/hypercadaster_ES/08900.pkl"
+        file_path = f"{config['paths']['nextcloud']}/data/hypercadaster_ES/08900.pkl"
         df = pd.read_pickle(file_path, compression="gzip")
         gdf = gpd.GeoDataFrame(df, geometry='br__building_footprint_geometry')
         gdf.set_crs("EPSG:25831")

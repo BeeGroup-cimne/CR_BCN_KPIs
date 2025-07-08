@@ -47,7 +47,7 @@ def transformar_datos(client, db, indicators, coleccion_destino, batch_size =100
     client.close()
 
 
-    file_path = "/Users/jose/Nextcloud/Beegroup/data/hypercadaster_ES/08900.pkl"
+    file_path = f"{config['paths']['nextcloud']}/data/hypercadaster_ES/08900.pkl"
     df = pd.read_pickle(file_path, compression="gzip")
     result = {}
 

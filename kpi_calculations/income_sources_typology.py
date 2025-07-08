@@ -3,6 +3,7 @@ from datetime import datetime
 import numpy as np
 from social_ES.utils_INE import INEPopulationAnualCensus, INERentalDistributionAtlas
 
+from config.config_loader import config
 from connectors.hbase_connector import fetch_data_from_hbase
 from connectors.mongodb_connector import store_data_in_mongodb, store_many_data_in_mongodb
 from connectors.neo4j_connector import fetch_data_from_neo4j
@@ -17,7 +18,7 @@ class IncomeSourcesTypologyPerCensusTract(KPIBase):
     def extract_data(self):
         # Rental distribution
         df = INERentalDistributionAtlas(
-            path="/Users/jose/Nextcloud/Beegroup/data/social_ES/data/INERentalDistributionAtlas",
+            path=f"{config['paths']['nextcloud']}/data/social_ES/data/INERentalDistributionAtlas",
             municipality_code="08019", years=None)['Sections']
 
         self.data["rental"] = {

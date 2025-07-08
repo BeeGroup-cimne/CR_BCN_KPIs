@@ -1,6 +1,7 @@
 import math
 from datetime import datetime
 
+from config.config_loader import config
 from connectors.hbase_connector import fetch_data_from_hbase
 from connectors.neo4j_connector import fetch_data_from_neo4j
 from kpi_calculations.kpi_base import KPIBase
@@ -33,7 +34,7 @@ class ClimateSheltersFilterInfo(KPIBase):
     def extract_data(self):
 
         df_consumptions = pd.read_excel('data/Dades vulnerabilitat energètica habitatges_CIMNE.xlsx', engine='openpyxl')
-        file_path = "/Users/jose/Nextcloud/Beegroup/data/hypercadaster_ES/08900.pkl"
+        file_path = f"{config['paths']['nextcloud']}/data/hypercadaster_ES/08900.pkl"
         df_hyper = pd.read_pickle(file_path, compression="gzip")
         main_usage_list = ["Residential", "Industrial", "Offices", "Commercial", "Sports facilities",
                            "Entertainment venues",
@@ -88,7 +89,7 @@ class ClimateSheltersFilterInfo(KPIBase):
 
         data = {}
         hash_dict = get_reference_hash()
-        file_path = "/Users/jose/Nextcloud/Beegroup/data/hypercadaster_ES/08900.pkl"
+        file_path = f"{config['paths']['nextcloud']}/data/hypercadaster_ES/08900.pkl"
         df = pd.read_pickle(file_path, compression="gzip")
         self.data["building_area"] = dict(
             zip(df['building_reference'], df["br__above_ground_built_area"] + df["br__below_ground_built_area"]))

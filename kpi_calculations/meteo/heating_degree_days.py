@@ -44,7 +44,7 @@ class HeatingDegreeDays(MeteoBase):
     def calculate(self):
         print("calculate")
 
-        folder = "/Users/jose/Nextcloud/Beegroup/data/CR_BCN_meteo/Historical_ERA5Land/Predictions"
+        folder = f"{config['paths']['nextcloud']}/data/CR_BCN_meteo/Historical_ERA5Land/Predictions"
         years = sorted({f[11:15] for f in os.listdir(folder)
                         if f.startswith("prediction_") and f.endswith(".parquet")})
         for year in years:

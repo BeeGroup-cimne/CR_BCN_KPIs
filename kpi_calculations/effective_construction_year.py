@@ -12,7 +12,7 @@ class EffectiveConstructionYear(KPIBase):
         super().__init__(mongo_collection_name=kpi_name)
 
     def extract_data(self):
-        file_path = "/Users/jose/Nextcloud/Beegroup/data/hypercadaster_ES/08900.pkl"
+        file_path = f"{config['paths']['nextcloud']}/data/hypercadaster_ES/08900.pkl"
         df = pd.read_pickle(file_path, compression="gzip")
         self.data["neo4j_data"] = dict(zip(df['building_reference'], df['br__mean_building_space_effective_year']))
         # query = f"""MATCH (n:s4bldg__Building)-[:geosp__hasArea]->(m:saref__Measurement)-[:saref__relatesToProperty]->(bigg__GrossFloorArea{{uri:"http://bigg-project.eu/ontology#GrossFloorArea"}}) RETURN apoc.map.fromPairs(collect([m.uri, m.saref__hasValue])) AS result"""
