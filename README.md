@@ -20,7 +20,27 @@ These indicators are used to support data-driven decision-making and are display
 
 ## KPI Documentation
 
-Below you will find a detailed list of all KPIs, including their name, description, and unit of measurement.
+
+
+This section provides a detailed list of Key Performance Indicators (KPIs) used to assess buildings and their surrounding environment in Barcelona. Each KPI includes its name, description, unit of measurement, and data source.
+
+
+
+To improve clarity and usability, KPIs are grouped into the following typologies:
+
+
+
+- **Building Characteristics**: Physical and structural features of buildings, such as floor area, construction year, number of dwellings, or wall orientation.
+
+- **Climate Variability and Extreme Events**: Indicators that describe local climate behavior and exposure to extreme weather, including heatwaves, cooling degree days, and tropical nights.
+
+- **Demographic Indicators**: Population characteristics such as age, gender, household size, and place of birth, allocated to each building.
+
+- **Energy Indicators**: Information on energy consumption and efficiency, including electricity and gas use, thermal demand, and EPC performance.
+
+- **Infrastructure Indicators**: Measures of access to climate shelters, vegetation coverage, and proximity to key infrastructure.
+
+- **Socio-Economic Indicators**: Metrics describing income levels, economic inequality, and household income distribution.
 
 ### Building Characteristics
 
