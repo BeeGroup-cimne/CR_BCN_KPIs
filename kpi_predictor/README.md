@@ -1,4 +1,5 @@
-# 🏠 KPI Predictor for Building-Level Time Series (MongoDB + CatBoost)
+# 🏠 Climate Ready Barcelona: Indicators predictor
+[> return to main](../README.md)
 
 This repository contains a Python script for retrieving time series indicators (KPIs) from a MongoDB collection, training regression models using [CatBoost](https://catboost.ai/), and predicting missing KPI values for each building per year. It then uploads the completed values and prediction flags back to MongoDB.
 
