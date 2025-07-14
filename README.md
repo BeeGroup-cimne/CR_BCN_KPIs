@@ -1,4 +1,4 @@
-# CR_BCN_KPIs
+# Climate Ready Barcelona: Indicators calculation
 
 Welcome to the **CR_BCN_KPIs** repository.
 
