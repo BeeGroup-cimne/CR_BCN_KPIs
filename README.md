@@ -348,9 +348,7 @@ Indicators are grouped into thematic categories, and each category contributes e
 **Note:** Some indicators are considered *inverse*, meaning that higher values contribute to *lower* vulnerability. These include: total built area, year of construction, and annual net household income.
 
 For each indicator *I*, the ECDF is defined as:
-
-![ECDF formula](docs_generator/Fig/ECDF_formula.png)
-
+<p><strong>F<sub>j</sub>(x) = (1 / N) * Σ<sub>b=1</sub><sup>N</sup> 1(X<sub>b</sub> ≤ x)</strong></p>
 
 Where:
 - **N** is the total number of buildings
