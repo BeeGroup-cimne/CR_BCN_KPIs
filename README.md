@@ -349,7 +349,7 @@ Indicators are grouped into thematic categories, and each category contributes e
 
 For each indicator *I*, the ECDF is defined as:
 
-![ECDF formula](Fig/ECDF_formula.png)
+![ECDF formula](docs_generator/Fig/ECDF_formula.png)
 
 
 Where:
