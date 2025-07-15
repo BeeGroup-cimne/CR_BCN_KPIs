@@ -44,8 +44,8 @@ all_data_collections = [name for name in db.list_collection_names() if name.ends
 existing_data_collections = set(all_data_collections)
 
 # Initialise README content
-readme_lines = ["# CR_BCN_KPIs\n",
-    "Welcome to the **CR_BCN_KPIs** repository.\n",
+readme_lines = ["# Climate Ready Barcelona: Indicators calculation\n",
+    "Welcome to the **Climate Ready Barcelona: Indicators calculation** repository.\n",
     "This repository contains a collection of Key Performance Indicators (KPIs) calculated for each building in the city of Barcelona.\n",
     "These indicators are used to support data-driven decision-making and are displayed in the **Climate Ready BCN map**, a platform designed to visualize and explore urban performance metrics.\n",
     "\n---\n",
@@ -124,10 +124,12 @@ for group_name in sorted(group_to_kpi_keys.keys()):
 
 # Add CVI section
 readme_lines.append("\n---\n")
-readme_lines.append("## Climate Vulnerability Index (CVI)\n")
+readme_lines.append("## Climate Vulnerability Index (CVI) construction\n")
 readme_lines.append(
     "The **Climate Vulnerability Index (CVI)** is a composite indicator used to assess climate-related vulnerability across buildings in Barcelona. "
-    "It is calculated using an Empirical Cumulative Distribution Function (ECDF) approach that ranks each individual indicator.\n"
+    "To assign a vulnerability value to each building for a given indicator, an **Empirical Cumulative Distribution Function (ECDF)** is used. "
+    "The ECDF transforms raw indicator values into a continuous score between 0 and 1, representing the building’s relative position within the city-wide distribution. "
+    "This allows for a finer-grained assessment than discrete quantile bins."
 )
 readme_lines.append(
     "Indicators are grouped into thematic categories, and each category contributes equally to the initial index — which is the default version shown on the Climate Ready BCN map. "
@@ -144,6 +146,38 @@ readme_lines.append(
     "**Note:** Some indicators are considered *inverse*, meaning that higher values contribute to *lower* vulnerability. "
     "These include: total built area, year of construction, and annual net household income."
 )
+readme_lines.append("")
+readme_lines.append("Mathematically, for an indicator *I*, the ECDF is defined as:")
+readme_lines.append("![ECDF formula](docs_generator/Fig/ECDF_formula.png)")
+readme_lines.append("")
+readme_lines.append("Where:")
+readme_lines.append("- **N** is the total number of buildings")
+readme_lines.append("- **Xᵦ** is the indicator value for building *b*")
+readme_lines.append("- **1(Xᵦ ≤ x)** is an indicator function returning 1 if the condition is true, 0 otherwise")
+readme_lines.append("")
+readme_lines.append("For an indicator *Iⱼ* of a building *b*, the normalized value becomes:")
+readme_lines.append("")
+readme_lines.append("![normalised indicator](docs_generator/Fig/normalised_indicator_score.png)")
+readme_lines.append("")
+readme_lines.append("Some indicators *reduce* vulnerability (e.g., high income, newer buildings). These are treated as inverse indicators, and their scores are flipped:")
+readme_lines.append("![Inverse Indicator Transformation](docs_generator/Fig/Inverse_Indicator_Transformation.png)")
+readme_lines.append("")
+readme_lines.append("Where *Iⱼ* is the value between 0 and 1 of indicator *j*.")
+readme_lines.append("Each indicator belongs to a broader typology (category), and the **typology score** is computed as the average of its indicators:")
+readme_lines.append("![Typology Aggregated Score](docs_generator/Fig/Typology_Aggregated_Score.png)")
+readme_lines.append("")
+readme_lines.append("Where |T| is the number of indicators in typology T.")
+readme_lines.append("")
+readme_lines.append("Finally, the **Climate Vulnerability Index (CVI)** is calculated as a weighted sum of all typologies:")
+readme_lines.append("![CVI](docs_generator/Fig/CVI.png)")
+readme_lines.append("")
+readme_lines.append("Where **Wₜ** is the weight assigned to typology T.")
+readme_lines.append("")
+readme_lines.append("By default, all typologies are equally weighted (Wₜ = 1/7). However, the user interface allows for customization of these weights, enabling users to prioritize indicators based on their specific needs — such as focusing more on climatic factors or socioeconomic vulnerability.")
+readme_lines.append("")
+readme_lines.append("The figure below shows a spatial representation of the CVI across Barcelona:")
+readme_lines.append("![CVI map](docs_generator/Fig/CVI_map.png)")
+
 
 
 # Add licence
@@ -154,7 +188,7 @@ readme_lines.append("You may obtain a copy of the license at:\n")
 readme_lines.append("https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12\n")
 readme_lines.append("Unless required by applicable law or agreed to in writing, software distributed under this license is distributed **on an \"AS IS\" basis**, without warranties or conditions of any kind.\n")
 readme_lines.append("© 2025 Jose Manuel Broto, Gerard Mor\n")
-readme_lines.append("\nThank you for using CR_BCN_KPIs!\n")
+readme_lines.append("\nThank you for using Climate Ready Barcelona: Indicators calculation!\n")
 readme_lines.append("For any questions or suggestions, feel free to reach gmor@cimne.upc.edu\n")
 
 

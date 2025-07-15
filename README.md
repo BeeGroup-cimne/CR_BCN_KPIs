@@ -333,7 +333,7 @@ To improve clarity and usability, KPIs are grouped into the following typologies
 
 ---
 
-## Climate Vulnerability Index (CVI)
+## Climate Vulnerability Index (CVI) construction
 
 The **Climate Vulnerability Index (CVI)** is a composite indicator used to assess climate-related vulnerability across buildings in Barcelona. To assign a vulnerability value to each building for a given indicator, an **Empirical Cumulative Distribution Function (ECDF)** is used. The ECDF transforms raw indicator values into a continuous score between 0 and 1, representing the building’s relative position within the city-wide distribution. This allows for a finer-grained assessment than discrete quantile bins.
 Indicators are grouped into thematic categories, and each category contributes equally to the initial index — which is the default version shown on the Climate Ready BCN map. However, users can adjust the weights of these categories to reflect specific local priorities or sensitivities.
@@ -356,6 +356,7 @@ Where:
 - **1(Xᵦ ≤ x)** is an indicator function returning 1 if the condition is true, 0 otherwise
 
 For an indicator *Iⱼ* of a building *b*, the normalized value becomes:
+
 ![normalised indicator](docs_generator/Fig/normalised_indicator_score.png)
 
 Some indicators *reduce* vulnerability (e.g., high income, newer buildings). These are treated as inverse indicators, and their scores are flipped:
@@ -392,6 +393,6 @@ Unless required by applicable law or agreed to in writing, software distributed 
 © 2025 Jose Manuel Broto, Gerard Mor
 
 
-Thank you for using CR_BCN_KPIs!
+Thank you for using Climate Ready Barcelona: Indicators calculation!
 
 For any questions or suggestions, feel free to reach gmor@cimne.upc.edu
