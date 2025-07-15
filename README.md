@@ -347,33 +347,35 @@ Indicators are grouped into thematic categories, and each category contributes e
 
 **Note:** Some indicators are considered *inverse*, meaning that higher values contribute to *lower* vulnerability. These include: total built area, year of construction, and annual net household income.
 
-For each indicator *I*, the ECDF is defined as:
-<p><strong>F<sub>j</sub>(x) = (1 / N) * Σ<sub>b=1</sub><sup>N</sup> 1(X<sub>b</sub> ≤ x)</strong></p>
+Mathematically, for an indicator *I*, the ECDF is defined as:
+![ECDF formula](docs_generator/Fig/ECDF_formula.png)
 
 Where:
 - **N** is the total number of buildings
 - **Xᵦ** is the indicator value for building *b*
 - **1(Xᵦ ≤ x)** is an indicator function returning 1 if the condition is true, 0 otherwise
 
-For building *b*, the normalized value becomes:
-> **Iⱼ = F(x_b)**
+For an indicator *Iⱼ* of a building *b*, the normalized value becomes:
+![normalised indicator](docs_generator/Fig/normalised_indicator_score.png)
 
 Some indicators *reduce* vulnerability (e.g., high income, newer buildings). These are treated as inverse indicators, and their scores are flipped:
-> **I'ⱼ = 1 - Iⱼ** (for inverse indicators)
+![Inverse Indicator Transformation](docs_generator/Fig/Inverse_Indicator_Transformation.png)
 
+Where *Iⱼ* is the value between 0 and 1 of indicator *j*.
 Each indicator belongs to a broader typology (category), and the **typology score** is computed as the average of its indicators:
-> **I_T = (1 / |T|) · Σ I'ⱼ**
+![Typology Aggregated Score](docs_generator/Fig/Typology_Aggregated_Score.png)
 
 Where |T| is the number of indicators in typology T.
 
 Finally, the **Climate Vulnerability Index (CVI)** is calculated as a weighted sum of all typologies:
-> **CVI = Σ W_T · I_T**
+![CVI](docs_generator/Fig/CVI.png)
 
-Where **W_T** is the weight assigned to typology T.
+Where **Wₜ** is the weight assigned to typology T.
 
-By default, all typologies are equally weighted (W_T = 1/7). However, the user interface allows for customization of these weights, enabling users to prioritize indicators based on their specific needs — such as focusing more on climatic factors or socioeconomic vulnerability.
+By default, all typologies are equally weighted (Wₜ = 1/7). However, the user interface allows for customization of these weights, enabling users to prioritize indicators based on their specific needs — such as focusing more on climatic factors or socioeconomic vulnerability.
 
 The figure below shows a spatial representation of the CVI across Barcelona:
+![CVI map](docs_generator/Fig/CVI_map.png)
 
 ---
 
