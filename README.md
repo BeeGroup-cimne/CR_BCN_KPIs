@@ -1,6 +1,6 @@
 # Climate Ready Barcelona: Indicators calculation
 
-Welcome to the **CR_BCN_KPIs** repository.
+Welcome to the **Climate Ready Barcelona: Indicators calculation** repository.
 
 This repository contains a collection of Key Performance Indicators (KPIs) calculated for each building in the city of Barcelona.
 
@@ -335,8 +335,7 @@ To improve clarity and usability, KPIs are grouped into the following typologies
 
 ## Climate Vulnerability Index (CVI)
 
-The **Climate Vulnerability Index (CVI)** is a composite indicator used to assess climate-related vulnerability across buildings in Barcelona. It is calculated using an Empirical Cumulative Distribution Function (ECDF) approach that ranks each individual indicator.
-
+The **Climate Vulnerability Index (CVI)** is a composite indicator used to assess climate-related vulnerability across buildings in Barcelona. To assign a vulnerability value to each building for a given indicator, an **Empirical Cumulative Distribution Function (ECDF)** is used. The ECDF transforms raw indicator values into a continuous score between 0 and 1, representing the building’s relative position within the city-wide distribution. This allows for a finer-grained assessment than discrete quantile bins.
 Indicators are grouped into thematic categories, and each category contributes equally to the initial index — which is the default version shown on the Climate Ready BCN map. However, users can adjust the weights of these categories to reflect specific local priorities or sensitivities.
 
 ### CVI categories and included KPIs:
@@ -347,6 +346,36 @@ Indicators are grouped into thematic categories, and each category contributes e
 - **Socio-Economic Indicators**: Annual net household income.
 
 **Note:** Some indicators are considered *inverse*, meaning that higher values contribute to *lower* vulnerability. These include: total built area, year of construction, and annual net household income.
+
+For each indicator *I*, the ECDF is defined as:
+
+![ECDF formula](Fig/ECDF_formula.png)
+
+
+Where:
+- **N** is the total number of buildings
+- **Xᵦ** is the indicator value for building *b*
+- **1(Xᵦ ≤ x)** is an indicator function returning 1 if the condition is true, 0 otherwise
+
+For building *b*, the normalized value becomes:
+> **Iⱼ = F(x_b)**
+
+Some indicators *reduce* vulnerability (e.g., high income, newer buildings). These are treated as inverse indicators, and their scores are flipped:
+> **I'ⱼ = 1 - Iⱼ** (for inverse indicators)
+
+Each indicator belongs to a broader typology (category), and the **typology score** is computed as the average of its indicators:
+> **I_T = (1 / |T|) · Σ I'ⱼ**
+
+Where |T| is the number of indicators in typology T.
+
+Finally, the **Climate Vulnerability Index (CVI)** is calculated as a weighted sum of all typologies:
+> **CVI = Σ W_T · I_T**
+
+Where **W_T** is the weight assigned to typology T.
+
+By default, all typologies are equally weighted (W_T = 1/7). However, the user interface allows for customization of these weights, enabling users to prioritize indicators based on their specific needs — such as focusing more on climatic factors or socioeconomic vulnerability.
+
+The figure below shows a spatial representation of the CVI across Barcelona:
 
 ---
 
