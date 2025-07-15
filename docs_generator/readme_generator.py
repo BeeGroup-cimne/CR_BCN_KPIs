@@ -138,15 +138,16 @@ readme_lines.append(
 readme_lines.append("### CVI categories and included KPIs:")
 readme_lines.append("- **Demographic Indicators**: Number of child residents, number of elderly residents, number of female residents.")
 readme_lines.append("- **Building Characteristics Indicators**: Total built area, year of construction.")
-readme_lines.append("- **Climate Variability and Extreme Events Indicators**: Torrid nights.")
+readme_lines.append("- **Climate Variability and Extreme Events Indicators**: Torrid nights, heat index.")
 readme_lines.append("- **Energy Indicators**: Annual electricity consumption, annual gas consumption, cooling thermal demand (EPC), heating thermal demand (EPC), and final energy consumption (EPC).")
-readme_lines.append("- **Socio-Economic Indicators**: Annual net household income.")
+readme_lines.append("- **Socio-Economic Indicators**: Annual net household income, income Gini index.")
 readme_lines.append("")
 readme_lines.append(
     "**Note:** Some indicators are considered *inverse*, meaning that higher values contribute to *lower* vulnerability. "
     "These include: total built area, year of construction, and annual net household income."
 )
-readme_lines.append("")
+
+readme_lines.append("### Mathematical formulation:")
 readme_lines.append("Mathematically, for an indicator *I*, the ECDF is defined as:")
 readme_lines.append("![ECDF formula](docs_generator/Fig/ECDF_formula.png)")
 readme_lines.append("")
@@ -177,6 +178,8 @@ readme_lines.append("By default, all typologies are equally weighted (Wₜ = 1/7
 readme_lines.append("")
 readme_lines.append("The figure below shows a spatial representation of the CVI across Barcelona:")
 readme_lines.append("![CVI map](docs_generator/Fig/CVI_map.png)")
+readme_lines.append("The figure above illustrates the vulnerability levels of buildings throughout the city, with areas of higher vulnerability marked. On the right-hand side of the map, the different indicator typologies are displayed, and users can adjust the weights of these categories.")
+readme_lines.append("This customisation feature allows users to modify the influence of each typology (such as demographic, building characteristics, or energy-related indicators) based on their specific needs or priorities. By adjusting these weights, users can tailor the analysis to focus more on certain factors — for instance, prioritising climate-related variables or socioeconomic factors — depending on the context or objectives of their study.")
 
 
 

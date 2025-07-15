@@ -341,12 +341,12 @@ Indicators are grouped into thematic categories, and each category contributes e
 ### CVI categories and included KPIs:
 - **Demographic Indicators**: Number of child residents, number of elderly residents, number of female residents.
 - **Building Characteristics Indicators**: Total built area, year of construction.
-- **Climate Variability and Extreme Events Indicators**: Torrid nights.
+- **Climate Variability and Extreme Events Indicators**: Torrid nights, heat index.
 - **Energy Indicators**: Annual electricity consumption, annual gas consumption, cooling thermal demand (EPC), heating thermal demand (EPC), and final energy consumption (EPC).
-- **Socio-Economic Indicators**: Annual net household income.
+- **Socio-Economic Indicators**: Annual net household income, income Gini index.
 
 **Note:** Some indicators are considered *inverse*, meaning that higher values contribute to *lower* vulnerability. These include: total built area, year of construction, and annual net household income.
-
+### Mathematical formulation:
 Mathematically, for an indicator *I*, the ECDF is defined as:
 ![ECDF formula](docs_generator/Fig/ECDF_formula.png)
 
@@ -377,6 +377,8 @@ By default, all typologies are equally weighted (Wₜ = 1/7). However, the user 
 
 The figure below shows a spatial representation of the CVI across Barcelona:
 ![CVI map](docs_generator/Fig/CVI_map.png)
+The figure above illustrates the vulnerability levels of buildings throughout the city, with areas of higher vulnerability marked. On the right-hand side of the map, the different indicator typologies are displayed, and users can adjust the weights of these categories.
+This customisation feature allows users to modify the influence of each typology (such as demographic, building characteristics, or energy-related indicators) based on their specific needs or priorities. By adjusting these weights, users can tailor the analysis to focus more on certain factors — for instance, prioritising climate-related variables or socioeconomic factors — depending on the context or objectives of their study.
 
 ---
 
