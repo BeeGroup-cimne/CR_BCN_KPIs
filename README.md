@@ -377,7 +377,7 @@ By default, all typologies are equally weighted (Wₜ = 1/7). However, the user 
 
 The figure below shows a spatial representation of the CVI across Barcelona:
 ![CVI map](docs_generator/Fig/CVI_map.png)
-The figure above illustrates the vulnerability levels of buildings throughout the city, with areas of higher vulnerability marked. On the right-hand side of the map, the different indicator typologies are displayed, and users can adjust the weights of these categories.
+The figure above illustrates the vulnerability levels of buildings throughout the city, with areas of higher vulnerability marked. On the left-hand side of the map, the different indicator typologies are displayed, and users can adjust the weights of these categories.
 This customisation feature allows users to modify the influence of each typology (such as demographic, building characteristics, or energy-related indicators) based on their specific needs or priorities. By adjusting these weights, users can tailor the analysis to focus more on certain factors — for instance, prioritising climate-related variables or socioeconomic factors — depending on the context or objectives of their study.
 
 ---
